@@ -1,0 +1,22 @@
+@server = http://localhost:1337
+
+### REGISTER
+POST {{server}}/auth/local/register
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "username": "admin",
+    "email": "admin@saxenadhruv.me",
+    "password": "admin123"
+}
+
+
+### LOGIN
+POST {{server}}/auth/local
+Content-Type: application/json
+
+{
+    "identifier": "admin",
+    "password": "admin123"
+}
