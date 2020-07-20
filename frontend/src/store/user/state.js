@@ -1,5 +1,3 @@
-export default function () {
-  return {
-    id: 1
-  }
-}
+export default () => ({
+  id: 1
+})
