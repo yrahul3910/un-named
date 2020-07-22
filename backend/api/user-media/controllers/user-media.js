@@ -9,11 +9,11 @@ const { parseMultipartData } = require('strapi-utils');
 module.exports = {
   async create(ctx) {
     if (ctx.is('multipart')) {
-      let media;
       const { files } = parseMultipartData(ctx);
       const user = await strapi.services['user-media'].findOne({
         user: ctx.state.user.id,
       });
+      let media;
       if (!user) {
         media = await strapi.services['user-media'].create(
           { user: ctx.state.user.id },
@@ -26,15 +26,9 @@ module.exports = {
           { files }
         );
       }
-      return {
-        success: true,
-        media: media.files[media.files.length - 1],
-      };
+      return { status: true, media: media.files[media.files.length - 1] };
     }
-    return {
-      success: false,
-      message: 'Missing media file!',
-    };
+    return { status: false, message: 'Multipart data does not exists' }
   },
   async find(ctx) {
     const media = await strapi.services['user-media'].findOne({

@@ -2,7 +2,7 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/user-medias",
+      "path": "/user/media",
       "handler": "user-media.find",
       "config": {
         "policies": []
@@ -10,7 +10,7 @@
     },
     {
       "method": "GET",
-      "path": "/user-medias/count",
+      "path": "/user/media/count",
       "handler": "user-media.count",
       "config": {
         "policies": []
@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/user-medias/:id",
+      "path": "/user/media/:id",
       "handler": "user-media.findOne",
       "config": {
         "policies": []
@@ -26,7 +26,7 @@
     },
     {
       "method": "POST",
-      "path": "/user-medias",
+      "path": "/user/media",
       "handler": "user-media.create",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/user-medias/:id",
+      "path": "/user/media/:id",
       "handler": "user-media.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/user-medias/:id",
+      "path": "/user/media/:id",
       "handler": "user-media.delete",
       "config": {
         "policies": []
