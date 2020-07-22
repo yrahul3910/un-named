@@ -28,7 +28,7 @@ module.exports = {
       }
       return media.files[media.files.length - 1];
     }
-    return ctx.badRequest(400, 'Multipart data required!');
+    return ctx.response.badRequest('Multipart data required!');
   },
   async find(ctx) {
     const media = await strapi.services['user-media'].findOne({
@@ -39,7 +39,6 @@ module.exports = {
     return media;
   },
   async delete(ctx) {
-    //TODO: Fix deleting of media, if one media is used multiple time, it's gets deteled from all rows.
     let row = await strapi.services['user-media'].findOne({
       user: ctx.state.user._id,
     });
@@ -47,10 +46,9 @@ module.exports = {
     if (!media) {
       return ctx.response.badRequest('Media not found!');
     }
+    //! FIXME:  If same media is used for different accounts, both gets deleted.
+    //? HINT: media.related array has user._id in which that particular media file is included.
     await strapi.plugins['upload'].services.upload.remove({ _id: media.id });
-    return {
-      success: true,
-      media,
-    };
+    return media;
   },
 };
