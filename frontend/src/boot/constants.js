@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-export const constants = {
+const constants = {
   token: '@token'
 }
-
 Vue.prototype.$constants = constants
+export default constants

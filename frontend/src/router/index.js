@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import routes from './routes'
-import { constants } from '../boot/constants'
+import constants from '../boot/constants'
 Vue.use(VueRouter)
 
 /*

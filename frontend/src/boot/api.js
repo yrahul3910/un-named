@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { constants } from './constants'
+import constants from './constants'
 import axios from 'axios'
 
 import state from '../store/config/state'
