@@ -26,9 +26,9 @@ module.exports = {
           { files }
         );
       }
-      return { status: true, media: media.files[media.files.length - 1] };
+      return media.files[media.files.length - 1];
     }
-    return { status: false, message: 'Multipart data does not exists' }
+    return ctx.badRequest(400, 'Multipart data required!');
   },
   async find(ctx) {
     const media = await strapi.services['user-media'].findOne({
