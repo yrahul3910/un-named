@@ -1,6 +1,6 @@
 const constant = {
-    auth: 'AUTH',
-    userUpdate: 'UPDATE_USER'
-}
+  auth: 'AUTH',
+  userUpdate: 'UPDATE_USER'
+};
 
-module.exports = constant
+module.exports = constant;

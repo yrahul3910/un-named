@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /**
  * An asynchronous bootstrap function that runs before
@@ -9,27 +9,27 @@
  *
  * See more details here: https://strapi.io/documentation/v3.x/concepts/configurations.html#bootstrap
  */
-const constants = require('../constant')
+const constants = require('../constant');
 module.exports = async () => {
   process.nextTick(() => {
-    const io = require('socket.io')(strapi.server)
+    const io = require('socket.io')(strapi.server);
     io.on('connection', async (socket) => {
       // new connection
       socket.on(constants.auth, async (payload) => {
         const { id } = await strapi.plugins[
           'users-permissions'
-        ].services.jwt.verify(payload.data)
+        ].services.jwt.verify(payload.data);
         const user = await strapi.plugins[
           'users-permissions'
         ].services.user.fetch({
           id
-        })
-        delete user.password
+        });
+        delete user.password;
         socket.emit(constants.userUpdate, {
           path: 'user',
           data: user
-        })
-      })
-    })
-  })
-}
+        });
+      });
+    });
+  });
+};
