@@ -1,10 +1,10 @@
 <template>
   <q-page
-    class="bg-blue-grey-8 window-height window-width row justify-center items-center"
+    class="window-height window-width row justify-center items-center __bg-gradient"
   >
     <div class="column">
       <div class="row">
-        <h5 class="text-h5 text-white q-my-md">UN-NAMMED</h5>
+        <h5 class="text-h5 text-white text-weight-bold q-my-md">UN-NAMMED</h5>
       </div>
       <div class="row">
         <q-card square bordered class="q-pa-lg shadow-1">
@@ -18,9 +18,7 @@
                 type="email"
                 label="Email / Username"
                 ref="identifier"
-                :rules="[
-                    val => !!val || 'Required *'
-                ]"
+                :rules="[val => !!val || 'Required *']"
               />
               <q-input
                 square
@@ -31,8 +29,9 @@
                 label="Password"
                 ref="password"
                 :rules="[
-                    val => !!val || 'Required *',
-                    val => val.length >= 6 || 'Password must be more than 6 characters'
+                  val => !!val || 'Required *',
+                  val =>
+                    val.length >= 6 || 'Password must be more than 6 characters'
                 ]"
               />
             </q-form>
@@ -41,20 +40,26 @@
             <q-btn
               unelevated
               :disabled="throttle ? true : false"
-              color="blue-grey-10"
               size="lg"
-              class="full-width"
+              flat
+              class="full-width text-white __bg-gradient __cta"
               label="Login"
               @click="handleLogin"
             />
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Not reigistered? Created an Account</p>
+            <p class="text-caption text-grey-6 cursor-pointer __anchor">
+              Not reigistered? Created an Account
+            </p>
           </q-card-section>
         </q-card>
       </div>
     </div>
-    <notify v-if="notify.allow" :data="notify" @notified="notify.allow = !notify.allow"/>
+    <notify
+      v-if="notify.allow"
+      :data="notify"
+      @notified="notify.allow = !notify.allow"
+    />
   </q-page>
 </template>
 
@@ -95,7 +100,24 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.__bg-gradient {
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+
+  &.__cta {
+    transition: background 1s linear;
+    &:hover {
+      background-image: none;
+      background-color: #4f84b9;
+    }
+  }
+}
+.__anchor {
+  &:hover {
+    color: rgb(47, 122, 172) !important;
+  }
+}
 .q-card {
   width: 360px;
 }
