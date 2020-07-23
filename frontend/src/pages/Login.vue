@@ -16,7 +16,7 @@
                 clearable
                 v-model="identifier"
                 type="email"
-                label="Email"
+                label="Email / Username"
                 ref="identifier"
                 :rules="[
                     val => !!val || 'Required *'

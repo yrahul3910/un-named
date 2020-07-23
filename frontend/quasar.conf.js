@@ -22,7 +22,8 @@ module.exports = function (/* ctx */) {
       'api',
       'i18n',
       'axios',
-      'constants'
+      'constants',
+      'socket'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
