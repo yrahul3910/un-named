@@ -16,6 +16,10 @@
       "configurable": false,
       "required": true
     },
+    "fullname": {
+      "type": "string",
+      "maxLength": 30
+    },
     "email": {
       "type": "email",
       "minLength": 6,
@@ -53,19 +57,20 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "photo": {
+    "profile_photo": {
       "model": "file",
       "via": "related",
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "plugin": "upload",
       "required": false
     },
+    "profile_photo_social": {
+      "type": "text"
+    },
     "settings": {
       "type": "json"
-    },
-    "fullname": {
-      "type": "string",
-      "maxLength": 30
     }
   }
 }
