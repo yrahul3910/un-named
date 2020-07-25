@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/auth/google/callback",
+      "handler": "Authredirect.googleRedirect",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/privacypolicy",
+      "handler": "Authredirect.policy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
