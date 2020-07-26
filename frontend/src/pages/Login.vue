@@ -1,55 +1,62 @@
 <template>
   <q-page
-    class="window-height window-width row justify-center items-center __bg-gradient"
+    class="window-height window-width row justify-center items-center bg-white"
   >
     <div class="column">
       <div class="row">
-        <h5 class="text-h5 text-white text-weight-bold q-my-md">UN-NAMMED</h5>
+        <h5 class="text-h4 text-grey-8 text-weight-bold q-my-md">UN-NAMMED</h5>
       </div>
       <div class="row">
-        <q-card square bordered class="q-pa-lg shadow-1">
+        <q-card class="q-pa-lg shadow-1 card">
+          <q-card-section class="row justify-center">
+            <GoogleSigninBtn @action="connectWithGoogle" />
+          </q-card-section>
+          <div class="text-overline text-center text-grey-7 text-weight-bold">
+            OR LOGIN WITH
+          </div>
           <q-card-section>
             <q-form class="q-gutter-md">
               <q-input
-                square
+                squaGoogleSigninBtnre
                 filled
                 clearable
+                clear-icon="close"
                 v-model="identifier"
                 type="email"
                 label="Email / Username"
-                ref="identifier"
-                :rules="[val => !!val || 'Required *']"
               />
               <q-input
                 square
                 filled
-                clearable
                 v-model="password"
-                type="password"
+                :type="isPwd ? 'password' : 'text'"
                 label="Password"
-                ref="password"
-                :rules="[
-                  val => !!val || 'Required *',
-                  val =>
-                    val.length >= 6 || 'Password must be more than 6 characters'
-                ]"
-              />
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
             </q-form>
           </q-card-section>
           <q-card-actions class="q-px-md">
             <q-btn
-              unelevated
               :disabled="throttle ? true : false"
-              size="lg"
-              flat
-              class="full-width text-white __bg-gradient __cta"
+              size="md"
+              color="primary"
+              unelevated
               label="Login"
+              class="full-width text-weight-bold __cta"
               @click="handleLogin"
-            />
+            >
+            </q-btn>
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
             <p class="text-caption text-grey-6 cursor-pointer __anchor">
-              Not reigistered? Created an Account
+              Don't have an account? Create one.
             </p>
           </q-card-section>
         </q-card>
@@ -65,22 +72,40 @@
 
 <script>
 import Notify from '../components/Notify'
+import GoogleSigninBtn from '../components/GoogleSigninBtn'
 export default {
   name: 'Login',
   components: {
-    Notify
+    Notify,
+    GoogleSigninBtn
   },
-  data () {
+  data() {
     return {
       notify: {},
+      isPwd: true,
       throttle: false,
       identifier: '',
       password: ''
     }
   },
   methods: {
-    async handleLogin () {
+    async handleLogin() {
       this.throttle = true
+      const errorNotify = {
+        allow: true,
+        color: 'red-7',
+        icon: 'fas fa-exclamation-triangle'
+      }
+      if (!this.identifier && !this.password) {
+        console.log({ identifier: this.identifier, password: this.password })
+        this.notify = {
+          ...errorNotify,
+          message: 'Enter valid email/username and password'
+        }
+        this.throttle = false
+        return false
+      }
+
       try {
         const { jwt } = await this.$api.login(this.identifier, this.password)
         localStorage.setItem(this.$constants.token, jwt)
@@ -88,36 +113,43 @@ export default {
       } catch (e) {
         console.log(e)
         this.notify = {
-          allow: true,
-          message: 'Either email or password is wrong.',
-          color: 'red-7',
-          icon: 'fas fa-exclamation-triangle'
+          ...errorNotify,
+          message: 'Either email or password is wrong.'
         }
       }
       this.throttle = false
+    },
+    connectWithGoogle() {
+      window.location.href = this.$store.state.config.server + '/connect/google'
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.__bg-gradient {
-  background-color: #8ec5fc;
-  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+.card {
+  box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+}
 
-  &.__cta {
-    transition: background 1s linear;
-    &:hover {
-      background-image: none;
-      background-color: #4f84b9;
-    }
-  }
+.__bg-gradient {
+  background: #2193b0; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #6dd5ed,
+    #2193b0
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #6dd5ed,
+    #2193b0
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .__anchor {
   &:hover {
     color: rgb(47, 122, 172) !important;
   }
 }
+
 .q-card {
   width: 360px;
 }
