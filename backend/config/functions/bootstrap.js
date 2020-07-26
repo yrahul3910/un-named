@@ -16,19 +16,26 @@ module.exports = async () => {
     io.on('connection', async (socket) => {
       // new connection
       socket.on(constants.auth, async (payload) => {
-        const { id } = await strapi.plugins[
-          'users-permissions'
-        ].services.jwt.verify(payload.data);
-        const user = await strapi.plugins[
-          'users-permissions'
-        ].services.user.fetch({
-          id
-        });
-        delete user.password;
-        socket.emit(constants.userUpdate, {
-          path: 'user',
-          data: user
-        });
+        try {
+          const { id } = await strapi.plugins[
+            'users-permissions'
+          ].services.jwt.verify(payload.data);
+          const user = await strapi.plugins[
+            'users-permissions'
+          ].services.user.fetch({
+            id
+          });
+          delete user.password;
+          socket.emit(constants.userUpdate, {
+            status: constants.authorized,
+            data: user
+          });
+        } catch (e) {
+          socket.emit(constants.userUpdate, {
+            status: constants.unauthorized,
+            error: e
+          })
+        }
       });
     });
   });
