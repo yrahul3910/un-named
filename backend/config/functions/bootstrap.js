@@ -34,7 +34,7 @@ module.exports = async () => {
           socket.emit(constants.userUpdate, {
             status: constants.unauthorized,
             error: e
-          })
+          });
         }
       });
     });
