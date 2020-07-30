@@ -2,8 +2,12 @@ import Vue from 'vue'
 import Constants from '../boot/constants'
 
 const isAuthorized = () => {
+  let i = 0
   return new Promise((resolve, reject) => {
-    const waitToPopulate = (delay = 30) => {
+    const waitToPopulate = (delay = 100) => {
+      i += 1
+      if (i >= 300) resolve(Constants.unauthorized)
+
       const status = Vue.prototype.$store.getters['user/getStatus']
       if (status) resolve(status)
       else setTimeout(waitToPopulate, delay)
@@ -35,7 +39,8 @@ const routes = [
       try {
         if (!localStorage.getItem(Constants.token)) next({ name: 'auth' })
         else {
-          const status = isAuthorized()
+          const status = await isAuthorized()
+          console.log(status)
           if (status !== Constants.authorized) {
             localStorage.removeItem(Constants.token)
             next({ name: 'auth' })

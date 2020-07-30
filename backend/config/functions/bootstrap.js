@@ -16,6 +16,7 @@ module.exports = async () => {
     io.on('connection', async (socket) => {
       // new connection
       socket.on(constants.auth, async (payload) => {
+        console.log('contacting auth')
         try {
           const { id } = await strapi.plugins[
             'users-permissions'
