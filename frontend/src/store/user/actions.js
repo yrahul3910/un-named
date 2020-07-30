@@ -1,2 +1,3 @@
-export function someAction (/* context */) {
+export const buildstate = ({ commit }, payload) => {
+  commit('buildstateSync', payload)
 }

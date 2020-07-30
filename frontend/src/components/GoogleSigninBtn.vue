@@ -40,7 +40,7 @@
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
   padding: 0;
-
+  box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.1);
   &:focus,
   &:hover {
     box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);

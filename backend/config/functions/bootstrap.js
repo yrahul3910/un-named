@@ -33,7 +33,7 @@ module.exports = async () => {
         } catch (e) {
           socket.emit(constants.userUpdate, {
             status: constants.unauthorized,
-            error: e
+            data: null
           });
         }
       });

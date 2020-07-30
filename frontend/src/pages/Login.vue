@@ -1,6 +1,6 @@
 <template>
   <q-page
-    class="window-height window-width row justify-center items-center bg-white"
+    class="window-height window-width row justify-center items-center overview"
   >
     <div class="column">
       <div class="row">
@@ -127,29 +127,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.overview {
+  background: #f2f2f2;
+}
 .card {
   box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
-}
-
-.__bg-gradient {
-  background: #2193b0; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #6dd5ed,
-    #2193b0
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #6dd5ed,
-    #2193b0
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .__anchor {
   &:hover {
     color: rgb(47, 122, 172) !important;
   }
 }
-
 .q-card {
   width: 360px;
 }
