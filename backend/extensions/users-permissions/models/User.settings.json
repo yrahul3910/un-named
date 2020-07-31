@@ -71,6 +71,10 @@
     },
     "settings": {
       "type": "json"
+    },
+    "profiles": {
+      "via": "user",
+      "collection": "profile"
     }
   }
 }

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profiles",
+  "info": {
+    "name": "profile"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "settings": {
+      "type": "json"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "profiles"
+    },
+    "event": {
+      "type": "string"
+    },
+    "isLive": {
+      "type": "boolean"
+    }
+  }
+}
