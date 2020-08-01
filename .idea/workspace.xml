@@ -32,8 +32,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1a973b28-c297-4806-87aa-b48584d3bf39" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/profile/controllers/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/profile/controllers/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/functions/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/functions/bootstrap.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,7 @@
       <workItem from="1596173821513" duration="14000" />
       <workItem from="1596213545517" duration="2525000" />
       <workItem from="1596297643294" duration="897000" />
-      <workItem from="1596309549097" duration="3028000" />
+      <workItem from="1596309549097" duration="3656000" />
     </task>
     <servers />
   </component>
