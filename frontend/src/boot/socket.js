@@ -9,14 +9,7 @@ export default dependencies => {
   if (token) socket.emit(Constants.auth, { data: token })
 
   socket.on(Constants.userUpdate, payload => {
-    if (payload.status === Constants.authorized) {
-      store.dispatch('user/buildstate', payload)
-    } else {
-      store.dispatch('user/buildstate', {
-        status: Constants.unauthorized,
-        data: null
-      })
-    }
+    store.dispatch('user/buildstate', payload)
   })
 
   Vue.prototype.$socket = socket
