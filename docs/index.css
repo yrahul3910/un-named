@@ -1,0 +1,31 @@
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #10aeed;
+}
+
+.sidebar-nav {
+  text-align: center;
+}
+
+.sidebar-nav>h1,
+.sidebar-nav>h3 {
+  margin-left: 1rem;
+  text-align: left;
+}
+
+.sidebar-nav>ul {
+  margin-left: 2rem;
+  text-align: left;
+}
+
+.sidebar-nav>a>img {
+  width: 10rem;
+}
+
+.source-logo {
+  width: 15rem;
+}
