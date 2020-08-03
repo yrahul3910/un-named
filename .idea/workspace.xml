@@ -31,23 +31,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a973b28-c297-4806-87aa-b48584d3bf39" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/api/event/config/routes.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/api/event/controllers/event.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/api/event/documentation/1.0.0/event.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/api/event/models/event.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/api/event/models/event.settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/api/event/services/event.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/profile/config/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/profile/config/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/api/profile/controllers/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/profile/controllers/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/profile/documentation/1.0.0/profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/profile/documentation/1.0.0/profile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/profile/models/profile.settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/profile/models/profile.settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/config/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config/policies/is-authenticated.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/policies/isAuthenticated.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/extensions/documentation/documentation/1.0.0/full_documentation.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/extensions/documentation/documentation/1.0.0/full_documentation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/extensions/users-permissions/documentation/1.0.0/users-permissions-User.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/extensions/users-permissions/documentation/1.0.0/users-permissions-User.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +86,7 @@
       <workItem from="1596297643294" duration="897000" />
       <workItem from="1596309549097" duration="3700000" />
       <workItem from="1596344128360" duration="11880000" />
-      <workItem from="1596433963890" duration="8781000" />
+      <workItem from="1596433963890" duration="9652000" />
     </task>
     <servers />
   </component>
