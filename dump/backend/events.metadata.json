@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"backend.events"},{"v":{"$numberInt":"2"},"unique":true,"key":{"slug":{"$numberInt":"1"}},"name":"slug_1","ns":"backend.events","partialFilterExpression":{"slug":{"$type":"string"}},"background":true}],"uuid":"db39efa1b9e04609aca5148bb2c5f738"}
