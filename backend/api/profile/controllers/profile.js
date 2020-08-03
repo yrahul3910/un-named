@@ -5,11 +5,17 @@
  * to customize this controller
  */
 const { sanitizeEntity } = require('strapi-utils');
+const Razorpay = require('razorpay');
+
+const { test, prod } = strapi.config.custom.razorpay;
+const keys = process.env.NODE_ENV === 'development' ? test : prod;
+const paymentProcessor = new Razorpay(keys)
 
 const _isAuthorized = async (_id, user) => {
   const profile = await strapi.services['profile'].findOne({ _id });
   if (!profile) return false;
-  return profile.user.id === user.id;
+  if(profile.user.id !== user.id) return false;
+  return profile
 };
 
 module.exports = {
@@ -56,9 +62,31 @@ module.exports = {
       return profiles.map(profile => {
         delete profile.user;
         return profile;
-      })
+      });
     } catch (e) {
       return e;
     }
+  },
+  order: async (ctx) => {
+    const authorized = await _isAuthorized(ctx.params.id, ctx.state.user);
+    if (!authorized) return ctx.response.badRequest('You are not authorized to this profile');
+
+    const event = await strapi.services['event'].findOne({ slug: ctx.params.slug })
+    const options = {
+      ...event.settings,
+      receipt: `orderID_${ctx.params.id}`
+    }
+    const orders = await paymentProcessor.orders.create(options)
+    const dataObject = {
+      settings: {
+        options: { ...options },
+        order: { ...orders }
+      }
+    }
+    const profile = await strapi.services['profile'].update({ _id: ctx.params.id }, dataObject)
+    return {
+      profile: sanitizeEntity(profile, { model: strapi.models.profile }),
+      order: dataObject
+    };
   }
 };

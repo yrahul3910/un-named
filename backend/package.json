@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "razorpay": "^2.0.6",
     "socket.io": "^2.3.0",
     "strapi": "3.0.6",
     "strapi-admin": "3.0.6",

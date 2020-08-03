@@ -41,6 +41,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/order/:slug/:id",
+      "handler": "profile.order",
+      "config": {
+        "policies": ["global::isAuthenticated"]
+      }
+    },
+    {
       "method": "PUT",
       "path": "/profiles/:id",
       "handler": "profile.update",

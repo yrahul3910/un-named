@@ -1338,11 +1338,11 @@
                 "user": {
                   "type": "string"
                 },
-                "event": {
-                  "type": "string"
-                },
                 "isLive": {
                   "type": "boolean"
+                },
+                "event": {
+                  "type": "string"
                 }
               }
             }
