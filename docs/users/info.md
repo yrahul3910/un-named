@@ -43,6 +43,10 @@
         "id": "5f146cb4c3b390337c51edc7"
     },
     "profile_photo": null,
+    "profiles": [
+        { ... },
+        { ... }
+    ],
     "id": "5f1d363f366c3c1865980cf6"
 }
 ```

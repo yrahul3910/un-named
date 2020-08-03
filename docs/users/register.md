@@ -2,8 +2,8 @@
 
 --- 
 ```
-  @route:  {{url}}/auth/local/register
-  @method: POST
+@route:  {{url}}/auth/local/register
+@method: POST
 ```
 
 > ### Request Body
