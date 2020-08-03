@@ -6,8 +6,8 @@
 const { sanitizeEntity } = require('strapi-utils');
 module.exports = {
   viewInfo: async (ctx) => {
-    const data = await strapi.plugins['users-permissions'].services.user.fetch({
-      id: ctx.state.user.id,
+    const data = await strapi.query('user', 'users-permissions').findOne({
+      id: ctx.state.user.id
     });
     return sanitizeEntity(data, {
       model: strapi.plugins['users-permissions'].models.user,
