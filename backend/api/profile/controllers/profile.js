@@ -7,8 +7,10 @@
 const { sanitizeEntity } = require('strapi-utils');
 const Razorpay = require('razorpay');
 
-const { test, prod } = strapi.config.custom.razorpay;
-const keys = process.env.NODE_ENV === 'development' ? test : prod;
+const keys = {
+  key_id: process.env.RAZORPAY_key_id,
+  key_secret: process.env.RAZORPAY_key_secret
+}
 const paymentProcessor = new Razorpay(keys);
 
 const _isAuthorized = async (_id, user) => {
