@@ -10,7 +10,7 @@ const Razorpay = require('razorpay');
 const keys = {
   key_id: process.env.RAZORPAY_key_id,
   key_secret: process.env.RAZORPAY_key_secret
-}
+};
 const paymentProcessor = new Razorpay(keys);
 
 const _isAuthorized = async (_id, user) => {
