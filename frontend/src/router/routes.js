@@ -29,7 +29,8 @@ const routes = [
       else next()
     },
     children: [
-      { path: '/', name: 'auth', component: () => import('pages/Login.vue') }
+      { path: '/', name: 'auth', component: () => import('pages/auth/Login.vue') },
+      { path: '/register', name: 'auth-register', component: () => import('pages/auth/register.vue') }
     ]
   },
   {

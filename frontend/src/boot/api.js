@@ -22,8 +22,15 @@ const login = async (identifier, password) => {
   return data
 }
 
+const register = async (userData) => {
+  const url = state.server + '/auth/local/register'
+  const { data } = await axios.post(url, userData)
+  return data
+}
+
 export const api = {
   login,
+  register,
   getAuthHeaders
 }
 
