@@ -34,7 +34,7 @@
     },
     {
       "method": "POST",
-      "path": "/profiles",
+      "path": "/profiles/:slug",
       "handler": "profile.create",
       "config": {
         "policies": ["global::isAuthenticated"]

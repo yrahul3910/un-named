@@ -22,15 +22,20 @@ const _isAuthorized = async (_id, user) => {
 
 module.exports = {
   create: async (ctx) => {
+    const event = await strapi.services['event'].findOne({ slug: ctx.params.slug });
+    if (!event) {
+      return ctx.throw(404, 'Event not found!');
+    }
     const profile = await strapi.services['profile'].create({
       user: ctx.state.user.id,
+      event: event.id,
       ...ctx.request.body
     });
     return sanitizeEntity(profile, { model: strapi.models.profile });
   },
   update: async (ctx) => {
     const updates = Object.keys(ctx.request.body);
-    const allowed = ['name', 'settings', 'event', 'isLive', 'description'];
+    const allowed = ['name', 'isLive', 'description'];
     const isValidUpdates = updates.every(update => allowed.includes(update));
     if (!isValidUpdates) ctx.response.badRequest('Invalid updates received');
 
