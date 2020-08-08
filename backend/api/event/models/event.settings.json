@@ -13,7 +13,11 @@
       "type": "text"
     },
     "settings": {
-      "type": "json"
+      "type": "json",
+      "default": {
+        "amount": 50000,
+        "currency": "INR"
+      }
     },
     "slug": {
       "type": "uid",

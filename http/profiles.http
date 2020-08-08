@@ -1,0 +1,43 @@
+@server=http://localhost:1337
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMmU4MzNiOWY0NzcxNjU4NWQ3ZmZjMCIsImlhdCI6MTU5Njg4NDEzOSwiZXhwIjoxNTk5NDc2MTM5fQ.5IzEn0bH1Fg8mG2hPVD9DhG8lbKGTWL98xPegaYdo2o
+@profileId=5f2e898efa8fef6f9c157a19
+### CREATE
+POST {{server}}/profiles/photography-2020
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Admin Profile",
+    "description": "lorem ipsum"
+}
+
+### UPDATE
+PUT {{server}}/profiles/{{profileId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "isLive": true,
+    "description": "lorem ipsum 22"
+}
+
+### FIND LOGGEDIN USER PROFILES
+GET {{server}}/profiles/my
+Authorization: Bearer {{token}}
+
+### FIND ALL PROFILES
+GET {{server}}/profiles
+
+### FIND ALL PROFILES OF SPECIFIC EVENT
+GET {{server}}/profiles?event.slug=photography-2020
+
+### FIND ALL LIVE PROFILES
+GET {{server}}/profiles?isLive=true
+
+### ORDER PROFILE (PAYMENT PROCESS)
+POSt {{server}}/order/photography-2020/{{profileId}}
+Authorization: Bearer {{token}}
+
+### DELETE PROFILE
+DELETE {{server}}/profiles/{{profileId}}
+Authorization: Bearer {{token}}

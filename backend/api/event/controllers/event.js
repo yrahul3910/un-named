@@ -18,5 +18,17 @@ module.exports = {
       { ...ctx.request.body }
     );
     return sanitizeEntity(event, { model: strapi.models.event });
+  },
+  findOne: async (ctx) => {
+    try {
+      const event = await strapi.services['event'].findOne({ slug: ctx.params.slug });
+      if (!event) {
+        return ctx.throw(404, 'Event not found!');
+      }
+      return sanitizeEntity(event, { model: strapi.models.event });
+    } catch (e) {
+      return ctx.throw(500)
+    }
+
   }
 };

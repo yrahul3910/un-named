@@ -9,23 +9,23 @@
     "timestamps": true
   },
   "attributes": {
-    "settings": {
-      "type": "json",
-      "private": true
-    },
     "name": {
       "type": "string"
     },
+    "isLive": {
+      "type": "boolean"
+    },
     "description": {
       "type": "richtext"
+    },
+    "settings": {
+      "type": "json",
+      "private": true
     },
     "user": {
       "plugin": "users-permissions",
       "model": "user",
       "via": "profiles"
-    },
-    "isLive": {
-      "type": "boolean"
     },
     "event": {
       "model": "event"
