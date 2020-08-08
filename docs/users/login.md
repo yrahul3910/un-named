@@ -18,7 +18,7 @@
 
 ```json
 {
-    "identifier": "admin",
+    "identifier": "someone",
     "password": "secretPassword123"
 }
 ```
@@ -27,47 +27,33 @@
 
 ```json
 {
-  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDEsImlhdCI6MTU5MjkwODUxMSwiZXhwIjoxNTk1NTAwNTExfQ.Osf6XODtvtYpcfEpoovBLxxbyRXGGh7fzu2ILARzbaY",
+  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMmU4MzNiOWY0NzcxNjU4NWQ3ZmZjMCIsImlhdCI6MTU5Njg4Nzc4MywiZXhwIjoxNTk5NDc5NzgzfQ.CqvlUVO2eIpkVOclOlGalbmOg14QhrNzWt-0OauMtd0",
   "user": {
-    "id": 41,
-    "username": "admin",
-    "email": "admin@sourcedigital.net",
-    "provider": "local",
     "confirmed": true,
-    "blocked": null,
+    "blocked": false,
+    "_id": "5f2e833b9f47716585d7ffc0",
+    "fullname": "Someone Admin",
+    "username": "someone",
+    "email": "someone@example.com",
+    "provider": "local",
+    "createdAt": "2020-08-08T10:49:31.959Z",
+    "updatedAt": "2020-08-08T10:58:27.023Z",
+    "__v": 0,
     "role": {
-      "id": 1,
+      "_id": "5f2e82699f47716585d7fea3",
       "name": "Authenticated",
       "description": "Default role given to authenticated user.",
-      "type": "authenticated"
+      "type": "authenticated",
+      "createdAt": "2020-08-08T10:46:01.700Z",
+      "updatedAt": "2020-08-08T11:30:43.561Z",
+      "__v": 0,
+      "id": "5f2e82699f47716585d7fea3"
     },
-    "created_at": "2020-06-23T10:27:25.000Z",
-    "updated_at": "2020-06-23T10:27:25.000Z",
-    "settings": null,
-    "name": null,
-    "address": null,
-    "city": null,
-    "state": null,
-    "zip": null,
-    "userShipping": null,
-    "userBilling": null,
-    "AcceptEULA": null,
-    "JSON_Field": null,
-    "TestJSON": null,
-    "lat": null,
-    "long": null,
-    "dob": null,
-    "country": "USA",
-    "phone": null,
-    "userMedia": null,
-    "photo": null,
-    "organizations": [],
-    "pulses": [],
-    "storefronts": [],
-    "activations": [],
-    "distributions": [],
-    "domains": [],
-    "properties": []
+    "profiles": [
+      { ... },
+      { ... }
+    ],
+    "id": "5f2e833b9f47716585d7ffc0"
   }
 }
 ```
@@ -87,11 +73,11 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 X-Frame-Options: SAMEORIGIN
 X-RateLimit-Limit: 10
 X-RateLimit-Remaining: 9
-X-RateLimit-Reset: 1592908826
+X-RateLimit-Reset: 1596887958
 Content-Type: application/json; charset=utf-8
 X-Powered-By: Strapi <strapi.io>
-X-Response-Time: 186ms
-Content-Length: 848
-Date: Tue, 23 Jun 2020 10:39:25 GMT
+X-Response-Time: 217ms
+Content-Length: 741
+Date: Sat, 08 Aug 2020 11:58:17 GMT
 Connection: close
 ```
