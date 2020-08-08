@@ -2,20 +2,20 @@
   <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
     <div>
       <div style="font-size: 30vh">
-        404
+        {{ $t('pages.error.status') }}
       </div>
 
-      <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+      <div class="text-h2 text-weight-bold" style="opacity:.4">
+        {{ $t('pages.error.tagline') }}
       </div>
 
       <q-btn
-        class="q-mt-xl"
+        class="q-mt-xl text-uppercase"
         color="white"
         text-color="blue"
         unelevated
         to="/"
-        label="Go Home"
+        :label="$t('pages.error.home')"
         no-caps
       />
     </div>

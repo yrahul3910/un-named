@@ -4,7 +4,9 @@
   >
     <div class="column">
       <div class="row">
-        <h5 class="text-h4 text-grey-8 text-weight-bold q-my-md">UN-NAMED</h5>
+        <h5 class="text-h4 text-grey-8 text-weight-bold q-my-md text-uppercase">
+          {{ $t('name') }}
+        </h5>
       </div>
       <div class="row">
         <q-card class="q-pa-lg shadow-1 card">
@@ -12,7 +14,7 @@
             <GoogleSignInBtn @action="connectWithGoogle" />
           </q-card-section>
           <div class="text-overline text-center text-grey-7 text-weight-bold">
-            OR LOGIN WITH
+            {{ $t('pages.auth.login.connect_with') }}
           </div>
           <q-card-section>
             <q-form class="q-gutter-md">
@@ -23,7 +25,7 @@
                 v-model="identifier"
                 tabindex="1"
                 type="email"
-                label="Email / Username"
+                :label="$t('pages.auth.login.identifier')"
               />
               <q-input
                 square
@@ -31,7 +33,7 @@
                 tabindex="2"
                 v-model="password"
                 :type="isPwd ? 'password' : 'text'"
-                label="Password"
+                :label="$t('pages.auth.login.password')"
                 @keydown.enter="handleLogin()"
               >
                 <template v-slot:append>
@@ -50,7 +52,7 @@
               size="md"
               color="primary"
               unelevated
-              label="Login"
+              :label="$t('pages.auth.login.name')"
               class="full-width text-weight-bold __cta"
               @click="handleLogin"
             >
@@ -60,7 +62,7 @@
             <p class="text-caption text-grey-6 cursor-pointer __anchor"
               @click="$router.replace({ name: 'auth-register' })"
             >
-              Don't have an account? Create one.
+              {{ $t('pages.auth.login.register') }}
             </p>
           </q-card-section>
         </q-card>

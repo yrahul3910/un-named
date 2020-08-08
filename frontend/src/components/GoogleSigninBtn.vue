@@ -23,7 +23,9 @@
         />
       </svg>
     </span>
-    <span class="google-button__text">Sign in with Google</span>
+    <span class="google-button__text">
+      {{ $t('pages.auth.connect_with_google') }}
+    </span>
   </button>
 </template>
 
