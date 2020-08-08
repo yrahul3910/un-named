@@ -6,7 +6,6 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
-
 module.exports = function (/* ctx */) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
@@ -25,6 +24,12 @@ module.exports = function (/* ctx */) {
       'constants',
       'socket'
     ],
+
+    htmlVariables: {
+      unnamed: {
+        target: process.env.TARGET_ENV
+      }
+    },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [

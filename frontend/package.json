@@ -6,7 +6,9 @@
   "author": "dhruvsaxena1998 <saxenadhruv1927@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "quasar dev",
+    "start": "quasar dev",
+    "dev": "cross-env TARGET_ENV=development quasar dev",
+    "dev-local": "cross-env TARGET_ENV=local quasar dev",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
@@ -14,6 +16,7 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.2",
     "quasar": "^1.0.0",
     "socket.io-client": "^2.3.0",
     "vue-i18n": "^8.0.0"
