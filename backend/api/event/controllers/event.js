@@ -27,7 +27,7 @@ module.exports = {
       }
       return sanitizeEntity(event, { model: strapi.models.event });
     } catch (e) {
-      return ctx.throw(500)
+      return ctx.throw(500);
     }
 
   }
