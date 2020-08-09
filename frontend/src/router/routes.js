@@ -34,6 +34,10 @@ const routes = [
     ]
   },
   {
+    path: '/profile/:id',
+    component: () => import('pages/profile/public.vue')
+  },
+  {
     path: '/home',
     component: () => import('layouts/MainLayout.vue'),
     beforeEnter: async (to, from, next) => {

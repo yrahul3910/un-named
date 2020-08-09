@@ -28,9 +28,16 @@ const register = async (userData) => {
   return data
 }
 
+const getPublicProfile = async (id) => {
+  const url = state.server + '/profiles/' + id
+  const { data } = await axios.get(url)
+  return data
+}
+
 export const api = {
   login,
   register,
+  getPublicProfile,
   getAuthHeaders
 }
 

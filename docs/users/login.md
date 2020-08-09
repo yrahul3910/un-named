@@ -3,8 +3,8 @@
 ---
 
 ```
-@route  = {{url}}/auth/local
-@method = POST
+@route:  {{url}}/auth/local
+@method: POST
 ```
 
 > ### Request Body
