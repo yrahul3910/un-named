@@ -1,0 +1,14 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "api documentation",
+  "scripts": {
+    "start": "docsify serve"
+  },
+  "keywords": [
+    "docs",
+    "docsify"
+  ],
+  "author": "dhruvsaxena1998",
+  "license": "ISC"
+}
