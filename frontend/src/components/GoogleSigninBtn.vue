@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="google-button" @click="$emit('action')">
+  <button type="button" class="google-button" @click="connectWithGoogle">
     <span class="google-button__icon">
       <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -28,6 +28,17 @@
     </span>
   </button>
 </template>
+
+<script>
+export default {
+  name: 'google-signin-button',
+  methods: {
+    connectWithGoogle() {
+      window.location.href = this.$store.state.config.server + '/connect/google'
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .google-button {

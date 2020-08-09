@@ -24,8 +24,8 @@ export default {
     this.$q.notify({
       ...settings,
       ...this.data,
-      timeout: 1000,
-      position: 'bottom-right'
+      timeout: this.data.timeout || 1000,
+      position: this.data.position || 'bottom-right'
     })
     this.$emit('notified')
   }

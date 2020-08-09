@@ -9,7 +9,7 @@
       <div class="row">
         <q-card class="q-pa-lg shadow-1 card">
           <q-card-section class="row justify-center">
-            <GoogleSignInBtn @action="connectWithGoogle" />
+            <GoogleSignInBtn />
           </q-card-section>
           <div class="text-overline text-center text-grey-7 text-weight-bold">
             OR SIGN-IN WITH
@@ -57,7 +57,7 @@
               </q-input>
             </q-form>
           </q-card-section>
-          <q-card-actions class="q-px-md">
+          <q-card-actions class="q-px-md row justify-between">
             <q-btn
               :disabled="throttle ? true : false"
               size="md"
@@ -70,7 +70,7 @@
             </q-btn>
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
-            <p class="text-caption text-grey-6 cursor-pointer __anchor"
+            <p class="text-subtitle2 text-grey-8 cursor-pointer __anchor"
                @click="$router.replace({ name: 'auth' })"
             >
               Already have an account? Login!
@@ -117,7 +117,8 @@ export default {
       if (!this.email && !this.password && !this.username) {
         this.notify = {
           ...errorNotify,
-          message: 'Enter valid email, username and password'
+          message: 'Enter valid email, username and password',
+          timeout: 2000
         }
         this.throttle = false
         return false
@@ -139,9 +140,6 @@ export default {
         }
       }
       this.throttle = false
-    },
-    connectWithGoogle() {
-      window.location.href = this.$store.state.config.server + '/connect/google'
     }
   }
 }

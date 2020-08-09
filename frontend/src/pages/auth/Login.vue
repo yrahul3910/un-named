@@ -11,7 +11,7 @@
       <div class="row">
         <q-card class="q-pa-lg shadow-1 card">
           <q-card-section class="row justify-center">
-            <GoogleSignInBtn @action="connectWithGoogle" />
+            <GoogleSignInBtn />
           </q-card-section>
           <div class="text-overline text-center text-grey-7 text-weight-bold">
             {{ $t('pages.auth.login.connect_with') }}
@@ -59,7 +59,7 @@
             </q-btn>
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
-            <p class="text-caption text-grey-6 cursor-pointer __anchor"
+            <p class="text-subtitle2 text-grey-8 cursor-pointer __anchor"
               @click="$router.replace({ name: 'auth-register' })"
             >
               {{ $t('pages.auth.login.register') }}
@@ -106,7 +106,8 @@ export default {
         console.log({ identifier: this.identifier, password: this.password })
         this.notify = {
           ...errorNotify,
-          message: 'Enter valid email/username and password'
+          message: 'Enter valid email/username and password',
+          timeout: 2000
         }
         this.throttle = false
         return false
@@ -124,9 +125,6 @@ export default {
         }
       }
       this.throttle = false
-    },
-    connectWithGoogle() {
-      window.location.href = this.$store.state.config.server + '/connect/google'
     }
   }
 }

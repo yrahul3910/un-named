@@ -30,7 +30,7 @@ const routes = [
     },
     children: [
       { path: '/', name: 'auth', component: () => import('pages/auth/Login.vue') },
-      { path: '/register', name: 'auth-register', component: () => import('pages/auth/register.vue') }
+      { path: '/register', name: 'auth-register', component: () => import('pages/auth/Register.vue') }
     ]
   },
   {
