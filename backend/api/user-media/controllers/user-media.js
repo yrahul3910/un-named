@@ -4,7 +4,7 @@
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
  * to customize this controller
  */
-const { parseMultipartData } = require('strapi-utils');
+const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
   async create(ctx) {
@@ -47,7 +47,7 @@ module.exports = {
     if (!media) {
       return ctx.throw(404, 'Media not found!')
     }
-    return media;
+    return sanitizeEntity(media, { model: strapi.models['user-media'] })
   },
   async delete(ctx) {
     let row = await strapi.services['user-media'].findOne({

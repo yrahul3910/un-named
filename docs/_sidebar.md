@@ -6,3 +6,8 @@
 
 ### [Events](events/index.md)
   - [Get Event](events/get-event.md "Get event details") 
+
+### [User Media](usermedia/index.md)
+  - [Upload](usermedia/upload.md)
+  - [Retrieve](usermedia/retrieve.md)
+  - [Delete](usermedia/delete.md)

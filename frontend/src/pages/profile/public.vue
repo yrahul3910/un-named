@@ -1,10 +1,6 @@
 <template>
   <div v-if="render">
-    <pre>
-        <code>
-            {{ this.profile }}
-        </code>
-    </pre>
+    <vue-json-pretty :data="profile" showLength/>
   </div>
   <div
     v-else
@@ -15,8 +11,12 @@
 </template>
 
 <script>
+import VueJsonPretty from 'vue-json-pretty'
 export default {
   name: 'public-profile',
+  components: {
+    VueJsonPretty
+  },
   data() {
     return {
       render: false,
