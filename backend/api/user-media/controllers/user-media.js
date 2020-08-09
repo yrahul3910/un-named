@@ -22,7 +22,6 @@ module.exports = {
       const usermedia = await strapi.services['user-media'].findOne({
         profile: ctx.params.profile
       });
-      console.log(usermedia)
       let media;
       if (!usermedia) {
         media = await strapi.services['user-media'].create(
@@ -42,23 +41,25 @@ module.exports = {
   },
   async find(ctx) {
     const media = await strapi.services['user-media'].findOne({
-      user: ctx.state.user._id
+      profile: ctx.params.profile
     });
 
-    if (media) delete media.user.password;
+    if (!media) {
+      return ctx.throw(404, 'Media not found!')
+    }
     return media;
   },
   async delete(ctx) {
     let row = await strapi.services['user-media'].findOne({
-      user: ctx.state.user._id
+      profile: ctx.params.profile
     });
-    let media = row.files.find((file) => file._id == ctx.params.id);
+    let media = row.files.find((file) => file.id == ctx.params.id);
     if (!media) {
       return ctx.response.badRequest('Media not found!');
     }
     //! FIXME:  If same media is used for different accounts, both gets deleted.
     //? HINT: media.related array has user._id in which that particular media file is included.
-    await strapi.plugins['upload'].services.upload.remove({ _id: media.id });
+    await strapi.plugins['upload'].services.upload.remove({ id: media.id });
     return media;
   }
 };

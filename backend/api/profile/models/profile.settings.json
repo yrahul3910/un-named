@@ -31,8 +31,8 @@
       "model": "event"
     },
     "user_media": {
-      "model": "user-media",
-      "via": "profile"
+      "via": "profile",
+      "model": "user-media"
     }
   }
 }

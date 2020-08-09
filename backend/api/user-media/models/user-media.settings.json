@@ -18,13 +18,9 @@
       "plugin": "upload",
       "required": false
     },
-    "user": {
-      "plugin": "users-permissions",
-      "model": "user"
-    },
     "profile": {
-      "via": "user_media",
-      "model": "profile"
+      "model": "profile",
+      "via": "user_media"
     }
   }
 }

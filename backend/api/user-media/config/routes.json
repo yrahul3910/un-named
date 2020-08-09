@@ -2,24 +2,8 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/user/media",
+      "path": "/media/:profile",
       "handler": "user-media.find",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/user/media/count",
-      "handler": "user-media.count",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/user/media/:id",
-      "handler": "user-media.findOne",
       "config": {
         "policies": []
       }
@@ -33,16 +17,8 @@
       }
     },
     {
-      "method": "PUT",
-      "path": "/user/media/:id",
-      "handler": "user-media.update",
-      "config": {
-        "policies": []
-      }
-    },
-    {
       "method": "DELETE",
-      "path": "/user/media/:id",
+      "path": "/media/:profile/:id",
       "handler": "user-media.delete",
       "config": {
         "policies": []
