@@ -12,13 +12,19 @@
     "files": {
       "collection": "file",
       "via": "related",
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "plugin": "upload",
       "required": false
     },
     "user": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "profile": {
+      "via": "user_media",
+      "model": "profile"
     }
   }
 }

@@ -8,20 +8,30 @@ const { parseMultipartData } = require('strapi-utils');
 
 module.exports = {
   async create(ctx) {
+    const profile = await strapi.services['profile'].findOne({
+      id: ctx.params.profile
+    });
+    if (!profile) {
+      return ctx.throw(404, 'Profile does not exists!');
+    }
+    if (profile.user.id !== ctx.state.user.id) {
+      return ctx.throw(401, 'Not authorized!');
+    }
     if (ctx.is('multipart')) {
       const { files } = parseMultipartData(ctx);
-      const user = await strapi.services['user-media'].findOne({
-        user: ctx.state.user.id,
+      const usermedia = await strapi.services['user-media'].findOne({
+        profile: ctx.params.profile
       });
+      console.log(usermedia)
       let media;
-      if (!user) {
+      if (!usermedia) {
         media = await strapi.services['user-media'].create(
-          { user: ctx.state.user.id },
+          { profile: ctx.params.profile },
           { files }
         );
       } else {
         media = await strapi.services['user-media'].update(
-          { user: ctx.state.user.id },
+          { id: usermedia.id },
           {},
           { files }
         );
@@ -32,7 +42,7 @@ module.exports = {
   },
   async find(ctx) {
     const media = await strapi.services['user-media'].findOne({
-      user: ctx.state.user._id,
+      user: ctx.state.user._id
     });
 
     if (media) delete media.user.password;
@@ -40,7 +50,7 @@ module.exports = {
   },
   async delete(ctx) {
     let row = await strapi.services['user-media'].findOne({
-      user: ctx.state.user._id,
+      user: ctx.state.user._id
     });
     let media = row.files.find((file) => file._id == ctx.params.id);
     if (!media) {
@@ -50,5 +60,5 @@ module.exports = {
     //? HINT: media.related array has user._id in which that particular media file is included.
     await strapi.plugins['upload'].services.upload.remove({ _id: media.id });
     return media;
-  },
+  }
 };

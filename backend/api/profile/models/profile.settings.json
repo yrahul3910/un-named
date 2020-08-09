@@ -29,6 +29,10 @@
     },
     "event": {
       "model": "event"
+    },
+    "user_media": {
+      "model": "user-media",
+      "via": "profile"
     }
   }
 }

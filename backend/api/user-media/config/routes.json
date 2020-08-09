@@ -26,7 +26,7 @@
     },
     {
       "method": "POST",
-      "path": "/user/media",
+      "path": "/media/:profile",
       "handler": "user-media.create",
       "config": {
         "policies": []
