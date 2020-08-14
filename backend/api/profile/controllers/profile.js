@@ -79,6 +79,9 @@ module.exports = {
     if (!authorized) return ctx.response.badRequest('You are not authorized to this profile');
 
     const event = await strapi.services['event'].findOne({ slug: ctx.params.slug });
+    if (!event) {
+      return ctx.throw(404, 'Event not found!');
+    }
     const options = {
       ...event.settings,
       receipt: `orderID_${ctx.params.id}`
