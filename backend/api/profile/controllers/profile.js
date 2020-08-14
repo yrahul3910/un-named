@@ -89,14 +89,13 @@ module.exports = {
     const orders = await paymentProcessor.orders.create(options);
     const dataObject = {
       settings: {
-        options: { ...options },
-        order: { ...orders }
+        ...orders
       }
     };
     const profile = await strapi.services['profile'].update({ _id: ctx.params.id }, dataObject);
     return {
       profile: sanitizeEntity(profile, { model: strapi.models.profile }),
-      order: dataObject
+      order: dataObject.settings
     };
   }
 };

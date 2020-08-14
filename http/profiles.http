@@ -1,6 +1,6 @@
 @server=http://localhost:1337
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMmU4MzNiOWY0NzcxNjU4NWQ3ZmZjMCIsImlhdCI6MTU5Njg4NDEzOSwiZXhwIjoxNTk5NDc2MTM5fQ.5IzEn0bH1Fg8mG2hPVD9DhG8lbKGTWL98xPegaYdo2o
-@profileId=5f2e898efa8fef6f9c157a19
+@profileId=5f361f1207eb392cbcd73f24
 ### CREATE
 POST {{server}}/profiles/photography-2020
 Content-Type: application/json
