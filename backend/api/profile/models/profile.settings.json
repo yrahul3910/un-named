@@ -31,8 +31,12 @@
       "model": "event"
     },
     "user_media": {
-      "via": "profile",
-      "model": "user-media"
+      "model": "user-media",
+      "via": "profile"
+    },
+    "votes": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

@@ -19,8 +19,8 @@
       "required": false
     },
     "profile": {
-      "model": "profile",
-      "via": "user_media"
+      "via": "user_media",
+      "model": "profile"
     }
   }
 }

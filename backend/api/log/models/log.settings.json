@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "logs",
+  "info": {
+    "name": "log"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "timestamp": {
+      "type": "datetime"
+    },
+    "settings": {
+      "type": "json"
+    },
+    "information": {
+      "type": "json"
+    },
+    "address": {
+      "type": "string"
+    }
+  }
+}
