@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import routes from './routes'
-import constants from '../boot/constants'
 Vue.use(VueRouter)
 
 /*
@@ -24,12 +23,6 @@ export default function ({ store }) {
     // quasar.conf.js -> build -> publicPath
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
-  })
-
-  Router.beforeEach((to, from, next) => {
-    const hasToken = localStorage.getItem(constants.token)
-    if (to.name === 'auth' && hasToken) next({ name: 'home' })
-    else next()
   })
 
   return Router

@@ -35,7 +35,10 @@ const routes = [
   },
   {
     path: '/profile/:id',
-    component: () => import('pages/profile/public.vue')
+    component: () => import('layouts/ProfileLayout.vue'),
+    children: [
+      { path: '/', name: 'profile', component: () => import('pages/profile/public.vue') }
+    ]
   },
   {
     path: '/home',
@@ -64,6 +67,7 @@ const routes = [
   // but you can also remove it
   {
     path: '*',
+    name: 'error',
     component: () => import('pages/Error404.vue')
   }
 ]
