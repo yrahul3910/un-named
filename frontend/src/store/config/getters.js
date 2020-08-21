@@ -1,2 +1,1 @@
-export function someGetter (/* state */) {
-}
+export const server = state => state.server

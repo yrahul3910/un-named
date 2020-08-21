@@ -22,15 +22,24 @@ const login = async (identifier, password) => {
   return data
 }
 
-const register = async (userData) => {
+const register = async userData => {
   const url = state.server + '/auth/local/register'
   const { data } = await axios.post(url, userData)
   return data
 }
 
-const getPublicProfile = async (id) => {
+const getPublicProfile = async id => {
   const url = state.server + '/profiles/' + id
   const { data } = await axios.get(url)
+  return data
+}
+
+const getEventUserMedia = async (slug, profile) => {
+  const url = state.server + `/profiles?event.slug=${slug}&isLive=true`
+  const { data } = await axios.get(url)
+  if (profile) {
+    return data.filter(d => d.id !== profile)
+  }
   return data
 }
 
@@ -38,6 +47,7 @@ export const api = {
   login,
   register,
   getPublicProfile,
+  getEventUserMedia,
   getAuthHeaders
 }
 

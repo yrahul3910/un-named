@@ -1,11 +1,11 @@
 <template>
-  <div v-if="render" class="row justify-center">
+  <div v-if="render" class="row justify-center" :key="key">
     <div class="q-pa-md">
       <q-card flat bordered style="width: 600px; max-width: 80vw;">
         <q-item>
           <q-item-section avatar>
             <q-avatar>
-              <img src="https://cdn.quasar.dev/img/avatar.png" />
+              <q-img :src="$config.server + profile.user.profile_photo.url" />
             </q-avatar>
           </q-item-section>
 
@@ -26,14 +26,22 @@
         </q-item>
         <q-item>
           <q-item-section>
-            <q-img
-              src="https://wallpapercave.com/wp/47fyfEm.jpg"
-              style="width: 100%"
-            >
-              <div class="absolute-bottom text-subtitle1 text-center">
-                {{ profile.event.name }}
-              </div>
-            </q-img>
+            <div class="q-pa-md">
+              <q-carousel
+                swipeable
+                animated
+                v-model="slide"
+                thumbnails
+                infinite
+              >
+                <q-carousel-slide
+                  v-for="media in usermedia"
+                  :key="media.id"
+                  :name="media.id"
+                  :img-src="$config.server + media.url"
+                />
+              </q-carousel>
+            </div>
 
             <div class="row items-center justify-between no-wrap q-mt-md">
               <div class="row items-center cursor-pointer">
@@ -67,29 +75,40 @@
       </q-card>
       <!-- Other Profiles -->
       <div class="text-h6 text-center q-ma-md">Other Top Profiles</div>
-      <div class="q-pa-md" v-for="i in 2" :key="i">
+      <div class="q-pa-md" v-for="other in otherProfiles" :key="other.id">
         <q-card flat bordered style="width: 100%">
           <q-item>
             <q-item-section avatar>
-              <q-skeleton type="QAvatar" animation="fade" />
+              <q-avatar>
+                <q-img
+                  :src="$config.server + other.user.profile_photo.url"
+                  :ratio="1"
+                />
+              </q-avatar>
             </q-item-section>
             <q-item-section>
               <q-item-label>
-                <q-skeleton type="text" animation="fade" />
+                <div class="text-uppercase text-subtitle1 text-weight-bold">
+                  {{ other.name }}
+                </div>
               </q-item-label>
               <q-item-label caption>
-                <q-skeleton type="text" animation="fade" />
+                <div class="text-caption text-weight-bold text-justify">
+                  {{ other.description.substr(0, 70) }}...
+                </div>
               </q-item-label>
             </q-item-section>
           </q-item>
-          <q-skeleton height="200px" square animation="fade" />
-          <q-card-section>
-            <q-skeleton type="text" class="text-subtitle2" animation="fade" />
-            <q-skeleton
-              type="text"
-              width="50%"
-              class="text-subtitle2"
-              animation="fade"
+          <q-img
+            :src="$config.server + other.user_media.files[0].url"
+            :ratio="16 / 9"
+          />
+          <q-card-section class="row justify-end">
+            <q-btn
+              unelevated
+              color="pink-6"
+              :label="`Checkout ${other.user.fullname}'s profile`"
+              @click="go(other.id)"
             />
           </q-card-section>
         </q-card>
@@ -109,23 +128,45 @@ export default {
   name: 'public-profile',
   data() {
     return {
+      key: 0,
       render: false,
-      error: false,
       share: false,
-      profile: {}
+      slide: 0,
+      profile: {},
+      usermedia: [],
+      otherProfiles: []
     }
   },
-  async mounted() {
+  methods: {
+    go(id) {
+      this.$router.push(id)
+      this.key = id
+    },
+    async fetch(id) {
+      try {
+        this.profile = await this.$api.getPublicProfile(id)
+        this.otherProfiles = await this.$api.getEventUserMedia(
+          this.profile.event.slug,
+          id
+        )
+        this.usermedia = this.profile.user_media.files
+        this.slide = this.usermedia[0].id
+        this.render = true
+      } catch (e) {
+        this.$router.push({ name: 'error' })
+      }
+    }
+  },
+  watch: {
+    key (id) {
+      this.render = false
+      this.fetch(id)
+    }
+  },
+  created() {
     const { id } = this.$router.currentRoute.params
-    try {
-      this.profile = await this.$api.getPublicProfile(id)
-      console.log(this.profile)
-      this.render = true
-    } catch (e) {
-      this.$router.push({ name: 'error' })
-    }
-  },
-  methods: {}
+    this.fetch(id)
+  }
 }
 </script>
 

@@ -34,10 +34,10 @@ const routes = [
     ]
   },
   {
-    path: '/profile/:id',
+    path: '/profile',
     component: () => import('layouts/ProfileLayout.vue'),
     children: [
-      { path: '/', name: 'profile', component: () => import('pages/profile/public.vue') }
+      { path: ':id', name: 'profile', component: () => import('pages/profile/public.vue'), props: true }
     ]
   },
   {
