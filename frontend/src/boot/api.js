@@ -34,8 +34,8 @@ const getPublicProfile = async id => {
   return data
 }
 
-const getEventUserMedia = async (slug, profile) => {
-  const url = state.server + `/profiles?event.slug=${slug}&isLive=true`
+const getEventUserMedia = async (slug, profile, limit = 10) => {
+  const url = state.server + `/profiles?event.slug=${slug}&isLive=true&_limit=${limit}&_sort=votes:DESC`
   const { data } = await axios.get(url)
   if (profile) {
     return data.filter(d => d.id !== profile)
