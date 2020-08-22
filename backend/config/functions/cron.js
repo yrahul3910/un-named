@@ -16,9 +16,9 @@ module.exports = {
    */
   '@daily': async () => {
     try {
-      await strapi.services['log'].delete()
+      await strapi.services['log'].delete();
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 };
