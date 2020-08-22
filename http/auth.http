@@ -18,8 +18,8 @@ POST {{server}}/auth/local
 Content-Type: application/json
 
 {
-    "identifier": "test",
-    "password": "devedu.tech"
+    "identifier": "AnotherUser",
+    "password": "anotheruser"
 }
 
 ### USER INFO

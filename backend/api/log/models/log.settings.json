@@ -9,17 +9,23 @@
     "timestamps": true
   },
   "attributes": {
+    "address": {
+      "type": "string"
+    },
     "timestamp": {
       "type": "datetime"
+    },
+    "lat": {
+      "type": "string"
+    },
+    "long": {
+      "type": "string"
     },
     "settings": {
       "type": "json"
     },
     "information": {
       "type": "json"
-    },
-    "address": {
-      "type": "string"
     }
   }
 }

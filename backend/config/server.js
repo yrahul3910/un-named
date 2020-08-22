@@ -6,6 +6,9 @@ module.exports = ({ env }) => ({
     auth: {
       secret: env('ADMIN_JWT_SECRET')
     }
+  },
+  cron: {
+    enabled: true
   }
 });
 //* use ngrok hosted url. [FOR DEVELOPMENT PURPOSES ONLY]

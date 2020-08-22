@@ -1,7 +1,7 @@
 <template>
   <div v-if="render" class="row justify-center" :key="key">
-    <div class="q-pa-md">
-      <q-card flat bordered style="width: 600px; max-width: 80vw;">
+    <div class="q-pa-md" style="width: 600px; max-width: 80vw">
+      <q-card flat bordered style="width: 100%">
         <q-item>
           <q-item-section avatar>
             <q-avatar>
@@ -44,10 +44,10 @@
             </div>
 
             <div class="row items-center justify-between no-wrap q-mt-md">
-              <div class="row items-center cursor-pointer">
+              <div class="row items-center cursor-pointer" @click="vote">
                 <q-icon
-                  name="favorite_border"
-                  color="grey-5"
+                  :name="!favorite ? 'favorite_border' : 'favorite'"
+                  :color="favorite ? 'red-7' : 'grey-5'"
                   class="q-mr-sm"
                   size="25px"
                 />
@@ -103,8 +103,9 @@
             :src="$config.server + other.user_media.files[0].url"
             :ratio="16 / 9"
           />
-          <q-card-section class="row justify-end">
+          <q-card-section class="row justify-center">
             <q-btn
+              no-caps
               unelevated
               color="pink-6"
               :label="`Checkout ${other.user.fullname}'s profile`"
@@ -114,6 +115,11 @@
         </q-card>
       </div>
     </div>
+    <notify
+      v-if="notify.allow"
+      :data="notify"
+      @notified="notify.allow = !notify.allow"
+    />
   </div>
   <div
     v-else
@@ -124,14 +130,20 @@
 </template>
 
 <script>
+import notify from '../../components/Notify'
 export default {
   name: 'public-profile',
+  components: {
+    notify
+  },
   data() {
     return {
       key: 0,
       render: false,
       share: false,
       slide: 0,
+      favorite: false,
+      notify: {},
       profile: {},
       usermedia: [],
       otherProfiles: []
@@ -143,6 +155,7 @@ export default {
       this.key = id
     },
     async fetch(id) {
+      this.favorite = false
       try {
         this.profile = await this.$api.getPublicProfile(id)
         this.otherProfiles = await this.$api.getEventUserMedia(
@@ -155,10 +168,25 @@ export default {
       } catch (e) {
         this.$router.push({ name: 'error' })
       }
+    },
+    async vote() {
+      try {
+        const ipconfig = await this.$api.fetchIP()
+        if (!this.favorite) {
+          this.favorite = true
+          this.$socket.emit(this.$constants.vote, {
+            logs: ipconfig,
+            profile: this.profile.id
+          })
+        }
+      } catch (e) {
+        this.favorite = false
+        console.log(e)
+      }
     }
   },
   watch: {
-    key (id) {
+    key(id) {
       this.render = false
       this.fetch(id)
     }
@@ -166,6 +194,27 @@ export default {
   created() {
     const { id } = this.$router.currentRoute.params
     this.fetch(id)
+
+    // Socket Events
+    this.$socket.on(this.$constants.votesUpdated, data => {
+      if (data.error) {
+        const errorNotify = {
+          allow: true,
+          color: 'red-7',
+          icon: 'fas fa-vote-yea'
+        }
+        this.notify = {
+          ...errorNotify,
+          message: data.message,
+          timeout: 2000
+        }
+        if (this.profile.id === data.profile) this.favorite = true
+        else this.favorite = false
+        return false
+      } else {
+        if (this.profile.id === data.profile) this.profile.votes = data.votes
+      }
+    })
   }
 }
 </script>

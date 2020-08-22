@@ -43,12 +43,19 @@ const getEventUserMedia = async (slug, profile, limit = 10) => {
   return data
 }
 
+const fetchIP = async () => {
+  const url = 'https://extreme-ip-lookup.com/json/'
+  const { data } = await axios.get(url)
+  return data
+}
+
 export const api = {
   login,
   register,
   getPublicProfile,
   getEventUserMedia,
-  getAuthHeaders
+  getAuthHeaders,
+  fetchIP
 }
 
 Vue.prototype.$api = api

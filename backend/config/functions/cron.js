@@ -12,10 +12,13 @@
 
 module.exports = {
   /**
-   * Simple example.
-   * Every monday at 1am.
+   * Every day at 00:00:00 (ss:mm:hh).
    */
-  // '0 1 * * 1': () => {
-  //
-  // }
+  '@daily': async () => {
+    try {
+      await strapi.services['log'].delete()
+    } catch (e) {
+      console.log(e)
+    }
+  }
 };

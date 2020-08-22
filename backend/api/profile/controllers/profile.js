@@ -65,11 +65,15 @@ module.exports = {
   findMine: async (ctx) => {
     try {
       if (!ctx.state.user) return ctx.response.badRequest('You are not authorized!');
-      const profiles = await strapi.services['profile'].search({ 'user._id': ctx.state.user._id });
+      const profiles = await strapi.services['profile'].find({ user: ctx.state.user.id });
+      
       return profiles.map(profile => {
-        delete profile.user;
-        return profile;
-      });
+        delete profile.created_by
+        delete profile.updated_by
+        delete profile.user
+
+        return profile
+      })
     } catch (e) {
       return e;
     }

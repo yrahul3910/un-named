@@ -48,7 +48,7 @@
           </q-card-section>
           <q-card-actions class="q-px-md">
             <q-btn
-              :disabled="throttle ? true : false"
+              :loading="throttle"
               size="md"
               color="primary"
               unelevated
