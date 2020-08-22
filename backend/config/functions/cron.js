@@ -12,7 +12,7 @@
 
 module.exports = {
   /**
-   * Every day at 00:00:00 (ss:mm:hh).
+   * Every day at midnight
    */
   '@daily': async () => {
     try {
