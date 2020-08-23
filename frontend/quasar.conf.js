@@ -22,7 +22,8 @@ module.exports = function (/* ctx */) {
       'i18n',
       'axios',
       'constants',
-      'socket'
+      'fingerprint',
+      'socket',
     ],
 
     htmlVariables: {

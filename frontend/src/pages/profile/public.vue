@@ -48,7 +48,7 @@
                 <q-icon
                   :name="!favorite ? 'favorite_border' : 'favorite'"
                   :color="favorite ? 'red-7' : 'grey-5'"
-                  class="q-mr-sm"
+                  class="q-mr-sm __favorite-icon"
                   size="25px"
                 />
                 <div class="text-subtitle1">{{ profile.votes }}</div>
@@ -103,10 +103,11 @@
             :src="$config.server + other.user_media.files[0].url"
             :ratio="16 / 9"
           />
-          <q-card-section class="row justify-center">
+          <q-card-section class="row justify-end">
             <q-btn
               no-caps
               unelevated
+              flat
               color="pink-6"
               :label="`Checkout ${other.user.fullname}'s profile`"
               @click="go(other.id)"
@@ -166,18 +167,23 @@ export default {
         this.slide = this.usermedia[0].id
         this.render = true
       } catch (e) {
-        this.$router.push({ name: 'error' })
+        // this.$router.push({ name: 'error' })
+        alert(e)
       }
     },
     async vote() {
       try {
-        const ipconfig = await this.$api.fetchIP()
         if (!this.favorite) {
-          this.favorite = true
-          this.$socket.emit(this.$constants.vote, {
-            logs: ipconfig,
-            profile: this.profile.id
-          })
+          const frp = await this.$fingerprint()
+          const payload = {
+            address: frp,
+            profile: this.profile,
+            config: {
+              is: this.$q.platform.is,
+              userAgent: this.$q.platform.userAgent
+            }
+          }
+          this.$socket.emit(this.$constants.vote, payload)
         }
       } catch (e) {
         this.favorite = false
@@ -198,6 +204,7 @@ export default {
     // Socket Events
     this.$socket.on(this.$constants.votesUpdated, data => {
       if (data.error) {
+        this.favorite = false
         const errorNotify = {
           allow: true,
           color: 'red-7',
@@ -209,10 +216,11 @@ export default {
           timeout: 2000
         }
         if (this.profile.id === data.profile) this.favorite = true
-        else this.favorite = false
-        return false
       } else {
-        if (this.profile.id === data.profile) this.profile.votes = data.votes
+        if (this.profile.id === data.profile) {
+          this.profile.votes = data.votes
+          this.favorite = true
+        }
       }
     })
   }
@@ -222,5 +230,13 @@ export default {
 <style lang="scss" scoped>
 .__spinner {
   height: 100vh;
+}
+.__favorite {
+  &-icon {
+    transition: 0.3s;
+    &:active {
+      transform: scale(1.5);
+    }
+  }
 }
 </style>

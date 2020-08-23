@@ -4225,6 +4225,11 @@ findup@^0.1.5:
     colors "~0.6.0-1"
     commander "~2.1.0"
 
+fingerprintjs2@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-2.1.2.tgz#d4812e627356f04b279c63b995b72591b2ab5ed5"
+  integrity sha512-ZPsLgjziFRbUb5tXWpEMtWp4XFnzSah8SiNfl3aoURDZ+2zi2tuIOYUULqDBV+Cb6paN+raWT+Q2qpOaCbX/Yw==
+
 flat-cache@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-2.0.1.tgz#5d296d6f04bda44a4630a301413bdbc2ec085ec0"
@@ -9100,6 +9105,11 @@ typescript@3.9.5:
   version "3.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
   integrity sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
+
+ua-parser-js@^0.7.21:
+  version "0.7.21"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
+  integrity sha512-+O8/qh/Qj8CgC6eYBVBykMrNtp5Gebn4dlGD/kKXVkJNDwyrAwSIqwz8CDf+tsAIWVycKcku6gIXJ0qwx/ZXaQ==
 
 uglify-js@^3.5.1:
   version "3.10.0"

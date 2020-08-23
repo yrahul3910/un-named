@@ -12,19 +12,10 @@
     "address": {
       "type": "string"
     },
-    "timestamp": {
-      "type": "datetime"
-    },
-    "lat": {
-      "type": "string"
-    },
-    "long": {
-      "type": "string"
-    },
-    "settings": {
+    "profile": {
       "type": "json"
     },
-    "information": {
+    "config": {
       "type": "json"
     }
   }
