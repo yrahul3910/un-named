@@ -45,7 +45,7 @@ module.exports = {
     });
 
     if (!media) {
-      return ctx.throw(404, 'Media not found!')
+      return ctx.throw(404, 'Media not found!');
     }
     return sanitizeEntity(media, { model: strapi.models['user-media'] });
   },
