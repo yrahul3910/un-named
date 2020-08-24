@@ -12,6 +12,9 @@
     "address": {
       "type": "string"
     },
+    "ip": {
+      "type": "string"
+    },
     "profile": {
       "type": "json"
     },

@@ -40,10 +40,12 @@ module.exports = async () => {
 
       socket.on(constants.vote, async (payload) => {
         try {
-          const logs = await strapi.query('log').findOne({
-            address: payload.address
+          const logs = await strapi.query('log').model.findOne({
+            $or: [
+              { address: payload.address },
+              { ip: payload.ip }
+            ]
           });
-          console.log(logs)
           if (logs) {
             socket.emit(constants.votesUpdated, {
               error: true,

@@ -147,7 +147,9 @@ export default {
       notify: {},
       profile: {},
       usermedia: [],
-      otherProfiles: []
+      otherProfiles: [],
+      ipconfig: {},
+      address: ''
     }
   },
   methods: {
@@ -174,13 +176,14 @@ export default {
     async vote() {
       try {
         if (!this.favorite) {
-          const frp = await this.$fingerprint()
           const payload = {
-            address: frp,
+            address: this.address,
+            ip: this.ipconfig.query,
             profile: this.profile,
             config: {
               is: this.$q.platform.is,
-              userAgent: this.$q.platform.userAgent
+              userAgent: this.$q.platform.userAgent,
+              ipconfig: this.ipconfig
             }
           }
           this.$socket.emit(this.$constants.vote, payload)
@@ -197,9 +200,12 @@ export default {
       this.fetch(id)
     }
   },
-  created() {
+  async created() {
     const { id } = this.$router.currentRoute.params
     this.fetch(id)
+
+    this.ipconfig = await this.$api.fetchIP()
+    this.address = await this.$fingerprint()
 
     // Socket Events
     this.$socket.on(this.$constants.votesUpdated, data => {

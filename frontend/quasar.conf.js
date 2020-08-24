@@ -23,7 +23,7 @@ module.exports = function (/* ctx */) {
       'axios',
       'constants',
       'fingerprint',
-      'socket',
+      'socket'
     ],
 
     htmlVariables: {
