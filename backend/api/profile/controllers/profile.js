@@ -13,13 +13,6 @@ const keys = {
 };
 const paymentProcessor = new Razorpay(keys);
 
-const _isAuthorized = async (_id, user) => {
-  const profile = await strapi.services['profile'].findOne({ _id });
-  if (!profile) return false;
-  if (profile.user.id !== user.id) return false;
-  return profile;
-};
-
 module.exports = {
   create: async (ctx) => {
     const event = await strapi.services['event'].findOne({
@@ -42,16 +35,8 @@ module.exports = {
     if (!isValidUpdates) ctx.response.badRequest('Invalid updates received');
 
     try {
-      // check if profile belongs to logged-in user
-      const authorized = await _isAuthorized(ctx.params.id, ctx.state.user);
-      if (!authorized)
-        return ctx.response.badRequest(
-          'You are not authorized to update this profile'
-        );
-
-      // update the profile
       const updatedProfile = await strapi.services['profile'].update(
-        { _id: ctx.params.id },
+        { _id: ctx.params.id, user: ctx.state.user.id },
         { ...ctx.request.body }
       );
       return sanitizeEntity(updatedProfile, { model: strapi.models.profile });
@@ -61,14 +46,9 @@ module.exports = {
   },
   delete: async (ctx) => {
     try {
-      const authorized = await _isAuthorized(ctx.params.id, ctx.state.user);
-      if (!authorized)
-        return ctx.response.badRequest(
-          'You are not authorized to delete this profile'
-        );
-
       const deletedProfile = await strapi.services['profile'].delete({
-        _id: ctx.params.id
+        id: ctx.params.id,
+        user: ctx.state.user.id
       });
       return sanitizeEntity(deletedProfile, { model: strapi.models.profile });
     } catch (e) {
@@ -96,10 +76,6 @@ module.exports = {
     }
   },
   order: async (ctx) => {
-    const authorized = await _isAuthorized(ctx.params.id, ctx.state.user);
-    if (!authorized)
-      return ctx.response.badRequest('You are not authorized to this profile');
-
     const event = await strapi.services['event'].findOne({
       slug: ctx.params.slug
     });
@@ -117,7 +93,7 @@ module.exports = {
       }
     };
     const profile = await strapi.services['profile'].update(
-      { _id: ctx.params.id },
+      { id: ctx.params.id, user: ctx.state.user.id },
       dataObject
     );
     return {

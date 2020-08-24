@@ -21,14 +21,12 @@ module.exports = {
   },
   findOne: async (ctx) => {
     try {
-      const event = await strapi.services['event'].findOne({ slug: ctx.params.slug });
-      if (!event) {
-        return ctx.throw(404, 'Event not found!');
-      }
+      const event = await strapi.services['event'].findOne({
+        slug: ctx.params.slug
+      });
       return sanitizeEntity(event, { model: strapi.models.event });
     } catch (e) {
       return ctx.throw(500);
     }
-
   }
 };
