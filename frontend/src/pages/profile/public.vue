@@ -181,7 +181,11 @@ export default {
             config: {
               is: this.$q.platform.is,
               userAgent: this.$q.platform.userAgent,
-              ipconfig: this.ipconfig
+              ipconfig: this.ipconfig,
+              screen: {
+                height: this.$q.screen.height,
+                width: this.$q.screen.width
+              }
             }
           }
           this.$socket.emit(this.$constants.vote, payload)

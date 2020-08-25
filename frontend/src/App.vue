@@ -6,6 +6,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    // check for dark mode
+    if (localStorage.getItem(this.$constants.darkmode)) {
+      this.$q.dark.set(true)
+    }
+  }
 }
 </script>

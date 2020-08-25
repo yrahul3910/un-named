@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 const constants = {
   token: '@token',
+  darkmode: '@darkmode',
   auth: 'AUTH',
   userUpdate: 'UPDATE_USER',
   authorized: 'AUTHORIZED',
