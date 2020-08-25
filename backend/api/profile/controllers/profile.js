@@ -13,20 +13,30 @@ const keys = {
 };
 const paymentProcessor = new Razorpay(keys);
 
+const _event = async (slug) => {
+  const event = await strapi.services['event'].findOne({ slug });
+  if (!event)
+    throw {
+      statusCode: 404,
+      error: { description: "Event doesn't exists" }
+    };
+
+  return event;
+};
+
 module.exports = {
   create: async (ctx) => {
-    const event = await strapi.services['event'].findOne({
-      slug: ctx.params.slug
-    });
-    if (!event) {
-      return ctx.throw(404, 'Event not found!');
+    try {
+      const event = await _event(ctx.params.slug);
+      const profile = await strapi.services['profile'].create({
+        user: ctx.state.user.id,
+        event: event.id,
+        ...ctx.request.body
+      });
+      return sanitizeEntity(profile, { model: strapi.models.profile });
+    } catch (e) {
+      ctx.throw(e.statusCode, e.error.description);
     }
-    const profile = await strapi.services['profile'].create({
-      user: ctx.state.user.id,
-      event: event.id,
-      ...ctx.request.body
-    });
-    return sanitizeEntity(profile, { model: strapi.models.profile });
   },
   update: async (ctx) => {
     const updates = Object.keys(ctx.request.body);
@@ -76,29 +86,29 @@ module.exports = {
     }
   },
   order: async (ctx) => {
-    const event = await strapi.services['event'].findOne({
-      slug: ctx.params.slug
-    });
-    if (!event) {
-      return ctx.throw(404, 'Event not found!');
+    try {
+      const event = await _event(ctx.params.slug);
+      console.log('event');
+      const options = {
+        ...event.settings,
+        receipt: `orderID_${ctx.params.id}`
+      };
+      const orders = await paymentProcessor.orders.create(options);
+      const dataObject = {
+        settings: {
+          ...orders
+        }
+      };
+      const profile = await strapi.services['profile'].update(
+        { id: ctx.params.id, user: ctx.state.user.id },
+        dataObject
+      );
+      return {
+        profile: sanitizeEntity(profile, { model: strapi.models.profile }),
+        order: dataObject.settings
+      };
+    } catch (e) {
+      ctx.throw(e.statusCode, e.error.description);
     }
-    const options = {
-      ...event.settings,
-      receipt: `orderID_${ctx.params.id}`
-    };
-    const orders = await paymentProcessor.orders.create(options);
-    const dataObject = {
-      settings: {
-        ...orders
-      }
-    };
-    const profile = await strapi.services['profile'].update(
-      { id: ctx.params.id, user: ctx.state.user.id },
-      dataObject
-    );
-    return {
-      profile: sanitizeEntity(profile, { model: strapi.models.profile }),
-      order: dataObject.settings
-    };
   }
 };
