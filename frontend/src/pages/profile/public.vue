@@ -154,7 +154,7 @@ export default {
   },
   methods: {
     go(id) {
-      this.$router.push(id)
+      this.$router.replace(id)
       this.key = id
     },
     async fetch(id) {
