@@ -7,7 +7,7 @@
           <q-space />
         </q-toolbar>
       </q-header>
-      <router-view />
+      <router-view :key="$route.params.id"/>
     </q-page-container>
   </q-layout>
 </template>

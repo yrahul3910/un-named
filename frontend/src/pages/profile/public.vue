@@ -1,5 +1,5 @@
 <template>
-  <div v-if="render" class="row justify-center" :key="key">
+  <div v-if="render" class="row justify-center">
     <div class="q-pa-md" style="width: 600px; max-width: 80vw">
       <q-card flat bordered style="width: 100%">
         <q-item>
@@ -139,7 +139,6 @@ export default {
   },
   data() {
     return {
-      key: 0,
       render: false,
       share: false,
       slide: 0,
@@ -155,7 +154,6 @@ export default {
   methods: {
     go(id) {
       this.$router.replace(id)
-      this.key = id
     },
     async fetch(id) {
       this.favorite = false
@@ -192,12 +190,6 @@ export default {
         this.favorite = false
         console.log(e)
       }
-    }
-  },
-  watch: {
-    key(id) {
-      this.render = false
-      this.fetch(id)
     }
   },
   async created() {
