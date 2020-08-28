@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Constants from '../boot/constants'
-
+import { Loading } from 'quasar'
 const isAuthorized = () => {
   let i = 0
   return new Promise((resolve, reject) => {
@@ -30,6 +30,7 @@ const routes = [
     },
     children: [
       { path: '/', name: 'auth', component: () => import('pages/auth/Login.vue') },
+      { path: '/provider', name: 'social-provider', component: () => import('pages/auth/Provider.vue') },
       { path: '/register', name: 'auth-register', component: () => import('pages/auth/Register.vue') }
     ]
   },
@@ -47,8 +48,9 @@ const routes = [
       try {
         if (!localStorage.getItem(Constants.token)) next({ name: 'auth' })
         else {
+          if (localStorage.getItem(Constants.provider)) localStorage.removeItem(Constants.provider)
+          else Loading.show()
           const status = await isAuthorized()
-          console.log(status)
           if (status !== Constants.authorized) {
             localStorage.removeItem(Constants.token)
             next({ name: 'auth' })
@@ -59,7 +61,8 @@ const routes = [
       }
     },
     children: [
-      { path: '/', name: 'home', component: () => import('pages/Index.vue') }
+      { path: '/', name: 'home', component: () => import('pages/Index.vue') },
+      { path: '/nice', name: 'nice', component: () => import('pages/Index.vue') }
     ]
   },
 

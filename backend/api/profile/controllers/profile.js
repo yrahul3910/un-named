@@ -18,7 +18,7 @@ const _event = async (slug) => {
   if (!event)
     throw {
       statusCode: 404,
-      error: { description: "Event doesn't exists" }
+      error: { description: 'Event doesn\'t exists' }
     };
 
   return event;

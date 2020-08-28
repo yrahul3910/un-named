@@ -35,7 +35,9 @@ const getPublicProfile = async id => {
 }
 
 const getEventUserMedia = async (slug, profile, limit = 10) => {
-  const url = state.server + `/profiles?event.slug=${slug}&isLive=true&_limit=${limit}&_sort=votes:DESC`
+  const url =
+    state.server +
+    `/profiles?event.slug=${slug}&isLive=true&_limit=${limit}&_sort=votes:DESC`
   const { data } = await axios.get(url)
   if (profile) {
     return data.filter(d => d.id !== profile)
@@ -49,13 +51,20 @@ const fetchIP = async () => {
   return data
 }
 
+const connectWithProvider = async (provider, parameter) => {
+  const url = state.server + `/auth/${provider}/callback${parameter}`
+  const { data } = await axios.get(url)
+  return data
+}
+
 export const api = {
   login,
   register,
   getPublicProfile,
   getEventUserMedia,
   getAuthHeaders,
-  fetchIP
+  fetchIP,
+  connectWithProvider
 }
 
 Vue.prototype.$api = api

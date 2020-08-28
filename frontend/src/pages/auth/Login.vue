@@ -11,7 +11,8 @@
       <div class="row">
         <q-card class="q-pa-lg shadow-1 card">
           <q-card-section class="row justify-center">
-            <GoogleSignInBtn />
+            <GoogleSignInBtn class="q-my-md" @clicked="providerSignIn('google')"/>
+            <FacebookSignInBtn @clicked="providerSignIn('facebook')" />
           </q-card-section>
           <div class="text-overline text-center text-grey-7 text-weight-bold">
             {{ $t('pages.auth.login.connect_with') }}
@@ -79,11 +80,13 @@
 <script>
 import Notify from 'components/Notify'
 import GoogleSignInBtn from 'components/GoogleSigninBtn'
+import FacebookSignInBtn from 'components/FacebookSignInBtn'
 export default {
   name: 'Login',
   components: {
     Notify,
-    GoogleSignInBtn
+    GoogleSignInBtn,
+    FacebookSignInBtn
   },
   data() {
     return {
@@ -125,6 +128,10 @@ export default {
         }
       }
       this.throttle = false
+    },
+    providerSignIn (provider) {
+      localStorage.setItem(this.$constants.provider, provider)
+      window.location.href = this.$store.state.config.server + `/connect/${provider}`
     }
   }
 }

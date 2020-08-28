@@ -3,6 +3,7 @@ import Vue from 'vue'
 const constants = {
   token: '@token',
   darkmode: '@darkmode',
+  provider: '@provider',
   auth: 'AUTH',
   userUpdate: 'UPDATE_USER',
   authorized: 'AUTHORIZED',

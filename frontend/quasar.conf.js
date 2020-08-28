@@ -104,7 +104,7 @@ module.exports = function (/* ctx */) {
       plugins: [
         'Notify',
         'Dialog',
-        'BottomSheet'
+        'Loading'
       ]
     },
 

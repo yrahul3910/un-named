@@ -9,6 +9,7 @@
     "start": "quasar dev",
     "dev": "cross-env TARGET_ENV=development quasar dev",
     "dev-local": "cross-env TARGET_ENV=local quasar dev",
+    "dev-test": "cross-env TARGET_ENV=test quasar dev",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },

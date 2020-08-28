@@ -6,6 +6,7 @@ export default {
   pages: {
     auth: {
       connect_with_google: 'Sign in with Google',
+      connect_with_facebook: 'Sign in with Facebook',
       login: {
         name: 'login',
         connect_with: 'OR LOGIN WITH',
