@@ -80,7 +80,7 @@
 <script>
 import Notify from 'components/Notify'
 import GoogleSignInBtn from 'components/GoogleSigninBtn'
-import FacebookSignInBtn from 'components/FacebookSignInBtn'
+import FacebookSignInBtn from 'components/FacebookSigninBtn'
 export default {
   name: 'Login',
   components: {

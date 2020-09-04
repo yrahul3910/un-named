@@ -3,6 +3,7 @@ module.exports = ({ env }) => ({
   port: env.int('PORT', 1337),
   url: env('HTTPS_URI'),
   admin: {
+    autoOpen: false,
     auth: {
       secret: env('ADMIN_JWT_SECRET')
     }

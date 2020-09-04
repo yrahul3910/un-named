@@ -7,9 +7,8 @@
   "private": true,
   "scripts": {
     "start": "quasar dev",
-    "dev": "cross-env TARGET_ENV=development quasar dev",
-    "dev-local": "cross-env TARGET_ENV=local quasar dev",
-    "dev-test": "cross-env TARGET_ENV=test quasar dev",
+    "local": "cross-env TARGET=localhost quasar dev",
+    "unstable": "cross-env TARGET=unstable quasar dev",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
@@ -27,6 +26,7 @@
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
+    "@quasar/quasar-app-extension-dotenv": "^1.0.5",
     "babel-eslint": "^10.0.1",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",

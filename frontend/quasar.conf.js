@@ -6,6 +6,15 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
+const fs = require('fs')
+const env = `TARGET=${process.env.TARGET}`
+if (process.env.TARGET !== 'production' || process.env.TARGET !== 'prod') {
+  fs.writeFileSync('./.env', env, 'utf-8')
+} else {
+  fs.writeFile('./.prod.env', env, 'utf-8')
+}
+console.log(`Building envirnoment for ${process.env.TARGET}`)
+
 module.exports = function (/* ctx */) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
@@ -25,12 +34,6 @@ module.exports = function (/* ctx */) {
       'fingerprint',
       'socket'
     ],
-
-    htmlVariables: {
-      unnamed: {
-        target: process.env.TARGET_ENV
-      }
-    },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [

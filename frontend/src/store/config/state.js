@@ -2,12 +2,13 @@ const server = {
   api: 'http://localhost:1337'
 }
 
-switch (window.unnamed.target) {
-  case 'local':
+console.log('process', process.env.TARGET)
+switch (process.env.TARGET) {
+  case 'localhost':
     server.api = 'http://localhost:1337'
     break
-  case 'test':
-    server.api = 'https://7744576baa6c.ngrok.io'
+  case 'unstable':
+    server.api = 'https://a55d16a43da1.ngrok.io'
     break
   default:
     server.api = 'http://localhost:1337'
