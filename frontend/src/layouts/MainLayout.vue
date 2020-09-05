@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
+    <q-header>
+      <q-toolbar class="bg-white text-grey-9">
         <q-btn
           flat
           dense
@@ -12,19 +12,24 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          UN-NAMED
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
-    >
+    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-1">
+      <q-scroll-area class="fit">
+        <q-list>
+          <q-item clickable v-ripple @click="$router.push({ name: 'settings' })">
+            <q-item-section avatar>
+              <q-icon name="settings" />
+            </q-item-section>
+            <q-item-section>
+              Settings
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
       <q-btn
         color="primary"
         flat
@@ -32,7 +37,7 @@
         class="full-width absolute-bottom"
         @click="handleLogout"
       >
-          <q-icon name="logout" size="18px" class="q-ml-sm"/>
+        <q-icon name="logout" size="18px" class="q-ml-sm" />
       </q-btn>
     </q-drawer>
 
@@ -45,13 +50,13 @@
 <script>
 export default {
   name: 'MainLayout',
-  data () {
+  data() {
     return {
       leftDrawerOpen: false
     }
   },
   methods: {
-    async handleLogout () {
+    async handleLogout() {
       await localStorage.removeItem(this.$constants.token)
       await this.$store.dispatch('user/buildstate', {
         status: this.$constants.unauthorized,

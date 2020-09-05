@@ -55,6 +55,7 @@ const routes = [
             localStorage.removeItem(Constants.token)
             next({ name: 'auth' })
           } else { next() }
+          Loading.hide()
         }
       } catch (e) {
         console.error(e)
@@ -62,7 +63,7 @@ const routes = [
     },
     children: [
       { path: '/', name: 'home', component: () => import('pages/Index.vue') },
-      { path: '/nice', name: 'nice', component: () => import('pages/Index.vue') }
+      { path: '/settings', name: 'settings', component: () => import('pages/me/Settings') }
     ]
   },
 

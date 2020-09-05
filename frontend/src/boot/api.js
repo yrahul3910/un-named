@@ -57,14 +57,21 @@ const connectWithProvider = async (provider, parameter) => {
   return data
 }
 
+const updateUser = async body => {
+  const url = state.server + '/user/update'
+  const config = getAuthHeaders()
+  const { data } = await axios.put(url, body, config)
+  return data
+}
+
 export const api = {
   login,
   register,
   getPublicProfile,
   getEventUserMedia,
-  getAuthHeaders,
   fetchIP,
-  connectWithProvider
+  connectWithProvider,
+  updateUser
 }
 
 Vue.prototype.$api = api

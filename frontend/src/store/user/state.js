@@ -1,4 +1,4 @@
-export default () => ({
+export default {
   status: undefined,
   data: {}
-})
+}

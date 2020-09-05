@@ -11,8 +11,6 @@
 export default {
   name: 'PageIndex',
   mounted () {
-    // hide loading if it's shown
-    this.$q.loading.hide()
   }
 }
 </script>
