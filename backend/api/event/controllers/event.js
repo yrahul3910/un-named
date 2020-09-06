@@ -19,6 +19,18 @@ module.exports = {
     );
     return sanitizeEntity(event, { model: strapi.models.event });
   },
+  find: async (ctx) => {
+    try {
+      const events = await strapi.services['event'].search(ctx.query)
+      return events.map(event => {
+        delete event.updated_by;
+        delete event.created_by;
+        return event
+      })
+    } catch (e) {
+      ctx.throw(500)
+    }
+  },
   findOne: async (ctx) => {
     try {
       const event = await strapi.services['event'].findOne({
