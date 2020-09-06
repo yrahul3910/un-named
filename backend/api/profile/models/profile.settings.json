@@ -12,8 +12,9 @@
     "name": {
       "type": "string"
     },
-    "isLive": {
-      "type": "boolean"
+    "votes": {
+      "type": "integer",
+      "default": 0
     },
     "description": {
       "type": "richtext"
@@ -33,10 +34,6 @@
     "user_media": {
       "model": "user-media",
       "via": "profile"
-    },
-    "votes": {
-      "type": "integer",
-      "default": 0
     }
   }
 }

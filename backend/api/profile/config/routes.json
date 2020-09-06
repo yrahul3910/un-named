@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "GET",
+      "path": "/profiles/live/:slug",
+      "handler": "profile.liveProfiles",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "POST",
       "path": "/profiles/:slug",
       "handler": "profile.create",

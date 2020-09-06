@@ -18,7 +18,7 @@ const _event = async (slug) => {
   if (!event)
     throw {
       statusCode: 404,
-      error: { description: 'Event doesn\'t exists' }
+      error: { description: "Event doesn't exists" }
     };
 
   return event;
@@ -40,7 +40,7 @@ module.exports = {
   },
   update: async (ctx) => {
     const updates = Object.keys(ctx.request.body);
-    const allowed = ['name', 'isLive', 'description'];
+    const allowed = ['name', 'description'];
     const isValidUpdates = updates.every((update) => allowed.includes(update));
     if (!isValidUpdates) ctx.response.badRequest('Invalid updates received');
 
@@ -83,6 +83,24 @@ module.exports = {
       });
     } catch (e) {
       return e;
+    }
+  },
+  liveProfiles: async (ctx) => {
+    try {
+      const event = await _event(ctx.params.slug);
+      const profiles = await strapi.query('profile').find({
+        _sort: 'votes:desc',
+        _limit: 10,
+        'event.id': event.id
+      });
+      return profiles.map((profile) => {
+        delete profile.created_by;
+        delete profile.updated_by;
+        delete profile.user.password;
+        return profile;
+      });
+    } catch (e) {
+      ctx.throw(e.statusCode, e.error.description);
     }
   },
   order: async (ctx) => {

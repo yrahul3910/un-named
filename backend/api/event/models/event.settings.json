@@ -12,16 +12,20 @@
     "name": {
       "type": "text"
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "isLive": {
+      "type": "boolean",
+      "default": true
+    },
     "settings": {
       "type": "json",
       "default": {
         "amount": 50000,
         "currency": "INR"
       }
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
     }
   }
 }

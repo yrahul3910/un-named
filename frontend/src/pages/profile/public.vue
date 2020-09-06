@@ -159,7 +159,7 @@ export default {
       this.favorite = false
       try {
         this.profile = await this.$api.getPublicProfile(id)
-        this.otherProfiles = await this.$api.getEventUserMedia(
+        this.otherProfiles = await this.$api.getLiveEventProfiles(
           this.profile.event.slug,
           id
         )
