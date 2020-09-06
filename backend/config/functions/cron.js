@@ -17,6 +17,7 @@ module.exports = {
   '@daily': async () => {
     try {
       await strapi.services['log'].delete();
+      console.log(`${new Date().toISOString()} : LOGS CLEARED!`);
     } catch (e) {
       console.log(e);
     }

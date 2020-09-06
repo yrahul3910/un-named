@@ -176,7 +176,7 @@ export default {
         if (!this.favorite) {
           const payload = {
             address: this.address,
-            ip: this.ipconfig.query,
+            ip: this.ipconfig.ip,
             profile: this.profile,
             config: {
               is: this.$q.platform.is,

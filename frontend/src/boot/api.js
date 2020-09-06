@@ -44,7 +44,7 @@ const getLiveEventProfiles = async (slug, profile) => {
 }
 
 const fetchIP = async () => {
-  const url = 'https://extreme-ip-lookup.com/json/'
+  const url = `http://api.ipstack.com/check?access_key=${constants.IPSTACK_API}&format=1`
   const { data } = await axios.get(url)
   return data
 }
