@@ -22,5 +22,14 @@ module.exports = {
     return sanitizeEntity(data, {
       model: strapi.plugins['users-permissions'].models.user
     });
+  },
+  changePassword: async (ctx) => {
+    const data = await strapi.plugins['users-permissions'].services.user.edit(
+      { id: ctx.state.user.id },
+      { password: ctx.request.body.password }
+    );
+    return sanitizeEntity(data, {
+      model: strapi.plugins['users-permissions'].models.user
+    });
   }
 };

@@ -136,7 +136,7 @@
               </div>
             </div>
             <div class="row justify-end">
-              <q-btn color="primary" label="Update" outline @click="updateUser"></q-btn>
+              <q-btn color="primary" label="Update Password" outline @click="updatePassword"></q-btn>
             </div>
           </q-item-section>
         </q-item>
@@ -164,11 +164,10 @@ export default {
     async updateUser() {
       const data = await this.$api.updateUser(this.user)
       this.$store.dispatch('user/updateuser', data)
+    },
+    async updatePassword() {
       if (this.changePassword && this.auth.password === this.auth.confirmPassword) {
-        this.$socket.emit(this.$constants.change_password, {
-          data: localStorage.getItem(this.$constants.token),
-          auth: this.auth.password
-        })
+        await this.$api.changePassword(this.auth.password)
         this.auth.password = ''
         this.auth.confirmPassword = ''
       }
@@ -185,10 +184,6 @@ export default {
   mounted() {
     this.user = { ...this.$user.data }
     this.render = true
-
-    this.$socket.on(this.$constants.changed_password, (data) => {
-      console.log('change password', data)
-    })
   }
 }
 </script>

@@ -71,24 +71,6 @@ module.exports = async () => {
           console.log(e);
         }
       });
-
-      socket.on(constants.change_password, async (payload) => {
-        try {
-          const { id } = await strapi.plugins[
-            'users-permissions'
-          ].services.jwt.verify(payload.data);
-          await strapi.plugins[
-            'users-permissions'
-          ].services.user.edit({ id }, { password: payload.auth });
-          socket.emit(constants.changed_password, {
-            status: constants.success
-          })
-        } catch (e) {
-          socket.emit(constants.changed_password, {
-            status: constants.failure
-          })
-        }
-      })
     });
   });
 };

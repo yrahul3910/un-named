@@ -62,14 +62,23 @@ const updateUser = async body => {
   return data
 }
 
+const changePassword = async password => {
+  const url = state.server + '/user/password'
+  const config = getAuthHeaders()
+  const body = { password }
+  const { data } = await axios.put(url, body, config)
+  return data
+}
+
 export const api = {
   login,
   register,
   getPublicProfile,
-  getEventUserMedia,
+  getLiveEventProfiles,
   fetchIP,
   connectWithProvider,
-  updateUser
+  updateUser,
+  changePassword
 }
 
 Vue.prototype.$api = api

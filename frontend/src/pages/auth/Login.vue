@@ -119,7 +119,7 @@ export default {
         const { jwt } = await this.$api.login(this.identifier, this.password)
         localStorage.setItem(this.$constants.token, jwt.toString())
         await this.$socket.emit(this.$constants.auth, { data: jwt })
-        await this.$router.replace({ name: 'home' })
+        this.$router.go()
       } catch (e) {
         console.log(e)
         this.notify = {
